@@ -21,14 +21,6 @@ function Main(props) {
     api.getCards().then((res) => {
       setCards(res);
     })
-  // const mapCards = (cards) => {
-  //   return cards.map((item) => ({
-  //     id: item._id,
-  //     likes: item.likes.length,
-  //     link: item.link,
-  //     name: item.name
-  //   }))
-  // }
   }, [])
     return (
       <main className="content">
