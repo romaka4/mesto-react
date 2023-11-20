@@ -1,7 +1,6 @@
 import React from 'react';
 import api from '../utils/Api.js'
 import Card from './Card.jsx'
-// import { handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick } from './App.jsx'
 
 
 function Main(props) {
