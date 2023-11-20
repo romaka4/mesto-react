@@ -7,61 +7,68 @@ export class Api {
     if (res.ok) {
       return res.json()
     } else {
-      Promise.reject(`Ошибка ${res.status}`);
+      return Promise.reject(`Ошибка ${res.status}`);
     }
   }
   
   getProfile() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
   getCards() {
     return fetch(`${this._url}cards`, {
       headers: this._headers,
       method: 'GET'
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
-  post(item) {
+  post(createCard) {
     return fetch(`${this._url}cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: item.name,
-        link: item.link
+        name: createCard.name,
+        link: createCard.link
       })
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
   
-  delete(cardId) {
-    return fetch(`${this._url}cards/${cardId}`, {
+  delete(deleteCard) {
+    return fetch(`${this._url}cards/${deleteCard}`, {
       method: 'DELETE',
       headers: this._headers
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
-  patch(data) {
+  patch(editProfile) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.job
+        name: editProfile.name,
+        about: editProfile.job
       })
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
 
   setLike(cardId) {
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
 
   removeLike(cardId) {
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
   setAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
@@ -70,7 +77,8 @@ export class Api {
       body: JSON.stringify({
         avatar: data.link
       })
-    }).then((this._checkResponce)) 
+    })
+    .then((this._checkResponce)) 
   }
 }
 const api = new Api ({

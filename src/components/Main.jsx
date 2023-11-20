@@ -7,19 +7,26 @@ import Card from './Card.jsx'
 function Main(props) {
   const [ userName, setUserName ] = React.useState(false);
   const [ userDescription, setUserDescription ] = React.useState(false);
-  const [ userAvatar, setuserAvatar ] = React.useState(false);
+  const [ userAvatar, setUserAvatar ] = React.useState(false);
   const [ cards, setCards ] = React.useState([]);
   React.useEffect(() => {
     api.getProfile()
     .then((res) =>{
       setUserName(res.name);
       setUserDescription(res.about);
-      setuserAvatar(res.avatar);
+      setUserAvatar(res.avatar);
+    })
+    .catch((err) => { 
+      console.log(`${err}`);
     })
   }, [])
   React.useEffect(() => {
-    api.getCards().then((res) => {
+    api.getCards()
+    .then((res) => {
       setCards(res);
+    })
+    .catch((err) => { 
+      console.log(`${err}`);
     })
   }, [])
     return (
