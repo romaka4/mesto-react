@@ -145,15 +145,6 @@ function App() {
 }
 
 
-// export function handleEditProfileClick() {
-//   document.querySelector('.popup_type_edit').classList.add('popup_opened');
-// }
-// export function handleAddPlaceClick() {
-//   document.querySelector('.popup_type_new-place').classList.add('popup_opened');
-// }
-// export function handleEditAvatarClick() {
-//   document.querySelector('.popup_type_avatar').classList.add('popup_opened');
-// }
 
 
 
