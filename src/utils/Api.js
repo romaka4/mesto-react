@@ -24,32 +24,33 @@ export class Api {
     })
     .then((this._checkResponce)) 
   }
-  post(createCard) {
+  createCard(card){
     return fetch(`${this._url}cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: createCard.name,
-        link: createCard.link
+        name: card.name,
+        link: card.link
       })
     })
     .then((this._checkResponce)) 
   }
   
-  delete(deleteCard) {
-    return fetch(`${this._url}cards/${deleteCard}`, {
+  
+    deleteCard(id) {
+    return fetch(`${this._url}cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })
     .then((this._checkResponce)) 
   }
-  patch(editProfile) {
+    editProfile(profile) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: editProfile.name,
-        about: editProfile.job
+        name: profile.name,
+        about: profile.job
       })
     })
     .then((this._checkResponce)) 
