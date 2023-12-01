@@ -1,57 +1,34 @@
 import React from 'react';
-import api from '../utils/Api.js'
 import Card from './Card.jsx'
-
+import CurrentUserContext from '../contexts/CurrentUserContext.jsx';
 
 function Main(props) {
-  const [ userName, setUserName ] = React.useState(false);
-  const [ userDescription, setUserDescription ] = React.useState(false);
-  const [ userAvatar, setUserAvatar ] = React.useState(false);
-  const [ cards, setCards ] = React.useState([]);
-  React.useEffect(() => {
-    api.getProfile()
-    .then((res) =>{
-      setUserName(res.name);
-      setUserDescription(res.about);
-      setUserAvatar(res.avatar);
-    })
-    .catch((err) => { 
-      console.log(`${err}`);
-    })
-  }, [])
-  React.useEffect(() => {
-    api.getCards()
-    .then((res) => {
-      setCards(res);
-    })
-    .catch((err) => { 
-      console.log(`${err}`);
-    })
-  }, [])
+  const currentUser = React.useContext(CurrentUserContext);
+  
     return (
       <main className="content">
         <section className="profile">
           <div onClick={props.onEditAvatar} 
           className="profile__image" 
-          style={{ backgroundImage: `url(${userAvatar})` }}  />
+          style={{ backgroundImage: `url(${currentUser.avatar})` }}  />
           <div className="profile__info">
-            <p className="profile__name">{userName}</p>
+            <p className="profile__name">{currentUser.name}</p>
             <button onClick={props.onEditProfile} className="profile__edit-btn" type="button" />
-            <p className="profile__bio">{userDescription}</p>
+            <p className="profile__bio">{currentUser.about}</p>
           </div>
           <button onClick={props.onAddPlace} className="profile__add-btn" type="button" />
         </section>
         <section className="cards">
-          { cards.map((card) => (
-            < Card key={card._id} card={card} onCardClick={props.onCardClick}/>
+          { props.cards.map((card) => (
+            < Card key={card._id} card={card}
+            onCardClick={props.onCardClick} 
+            onCardLike={props.onCardLike}
+            onCardDelete={props.onCardDelete}
+            />
           ))}
         </section>
       </main>
   )  
 }
-
-
-
-
 
 export default Main

@@ -50,7 +50,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: profile.name,
-        about: profile.job
+        about: profile.about
       })
     })
     .then((this._checkResponce)) 
