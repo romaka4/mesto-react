@@ -11,13 +11,6 @@ function AddPlacePopup(props) {
     linkRef.current.value = '';
   }, [props.isOpen]);
 
-  function handleNameChange(e) {
-    nameRef.current.value = e.target.value;
-  }
-
-  function handleLinkChange(e) {
-    linkRef.current.value = e.target.value;
-  }
   
   function handleAddPlaceSubmit(e) {
     e.preventDefault();
@@ -47,7 +40,6 @@ function AddPlacePopup(props) {
                 minLength={2}
                 maxLength={30}
                 required=""
-                onChange={handleNameChange}
                 ref={nameRef}
               />
               <span id="title-error" className="input-error" />
@@ -60,7 +52,6 @@ function AddPlacePopup(props) {
                 name="link"
                 id="link"
                 required=""
-                onChange={handleLinkChange}
                 ref={linkRef}
               />
               <span id="link-error" className="input-error" />
